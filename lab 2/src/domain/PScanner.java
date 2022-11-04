@@ -55,8 +55,8 @@ public class PScanner {
             file_scanner.close();
 
             // deploy pif and write the result
-            deploy_pif(token_table);
-            f_write_output();
+            fun_deploy_pif(token_table);
+            fun_write_output();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -235,15 +235,14 @@ public class PScanner {
                 break;
             stringBuilder.append(line.charAt(index));
         }
-
         return stringBuilder.toString();
     }
 
-    public void deploy_pif(CopyOnWriteArrayList<Pair<String, Integer>> tokens) {
-        List<String> invalidTokens = new ArrayList<>();
-        boolean isLexicallyCorrect = true;
-        for (Pair<String, Integer> tokenPair : tokens) {
-            String token = tokenPair.get_key();
+    public void fun_deploy_pif(CopyOnWriteArrayList<Pair<String, Integer>> tokens) {
+        List<String> bad_tokens = new ArrayList<>();
+        boolean correct = true;
+        for (Pair<String, Integer> token_pair : tokens) {
+            String token = token_pair.get_key();
 
             if (specification_file.is_operator(token) || specification_file.is_reserved_word(token)
                     || specification_file.is_separator(token)) {
@@ -260,35 +259,35 @@ public class PScanner {
                 Pair<Integer, Integer> position = symbol_table.get_position(token);
                 program_internal_form.add(1, position);
             }
-            else if (!invalidTokens.contains(token)) {
-                invalidTokens.add(token);
-                isLexicallyCorrect = false;
-                System.out.println("The program displayed an error at line" + tokenPair.get_value() +
+            else if (!bad_tokens.contains(token)) {
+                bad_tokens.add(token);
+                correct = false;
+                System.out.println("The program displayed an error at line" + token_pair.get_value() +
                         ": invalid token " + token);
             }
         }
 
-        if (isLexicallyCorrect) {
+        if (correct) {
             System.out.println("The program does not have any lexical errors");
         }
     }
 
-    public void f_write_output() {
+    public void fun_write_output() {
         try {
-            File pifFile = new File(PIF_outfile);
-            FileWriter pifFileWriter = new FileWriter(pifFile, false);
-            BufferedWriter pifWriter = new BufferedWriter(pifFileWriter);
-            pifWriter.write(program_internal_form.toString());
-            pifWriter.close();
-
-            File symbolTableFile = new File(ST_outfile);
-            FileWriter symbolTableFileWriter = new FileWriter(symbolTableFile, false);
-            BufferedWriter symbolTableWriter = new BufferedWriter(symbolTableFileWriter);
+            File st_out = new File(ST_outfile);
+            FileWriter st_file_writer = new FileWriter(st_out, false);
+            BufferedWriter symbolTableWriter = new BufferedWriter(st_file_writer);
             symbolTableWriter.write(symbol_table.toString());
             symbolTableWriter.close();
+
+            File pif_out = new File(PIF_outfile);
+            FileWriter pif_file_writer = new FileWriter(pif_out, false);
+            BufferedWriter pifWriter = new BufferedWriter(pif_file_writer);
+            pifWriter.write(program_internal_form.toString());
+            pifWriter.close();
         }
-        catch (IOException e) {
-            e.printStackTrace();
+        catch (IOException ioException) {
+            ioException.printStackTrace();
         }
     }
 }
