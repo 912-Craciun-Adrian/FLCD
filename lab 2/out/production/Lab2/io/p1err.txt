@@ -1,0 +1,15 @@
+integer function maximum(integer 1n, integer 2n, integer 3n) {
+	if (1n >= 2n and 1n >= 3n)
+		return 1n;
+	else if (2n >= 1n and 2n >= 3n)
+		return 2n;
+	else
+		return 3n;
+}
+
+integer function main() {
+	integer 1n, 2n, 3n;
+	1n = '6
+	read(1n, 2n, 3n);
+	return maximum(1n, 2n, 3n);
+}

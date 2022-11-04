@@ -1,0 +1,14 @@
+integer function sum() {
+	integer n, x;
+	largeInteger sum;
+	read(n);
+	ofor(n){
+		read(x);
+		sum += x;
+	}
+	return sum;
+}
+
+integer function main () {
+	sum();
+}

@@ -1,0 +1,14 @@
+integer function maximum(integer a, integer b, integer c) {
+	if (a >= b and a >= c)
+		return a;
+	else if (b >= a and b >= c)
+		return b;
+	else
+		return c;
+}
+
+integer function main() {
+	integer a, b, c;
+	read(a, b, c);
+	return maximum(a, b, c);
+}
