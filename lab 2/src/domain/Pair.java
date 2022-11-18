@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 /**
  * Custom Pair class to help us with the Symbol Table
  * @param <K> template for the key of the pair
@@ -44,5 +46,20 @@ public class Pair<K, V>{
     @Override
     public String toString() {
         return "<" + key + ", " + value + ">";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || getClass() != other.getClass())
+            return false;
+        Pair<?, ?> pair = (Pair<?, ?>) other;
+        return key.equals(pair.key) && value.equals(pair.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, value);
     }
 }

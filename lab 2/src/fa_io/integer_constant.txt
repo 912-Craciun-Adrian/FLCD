@@ -1,0 +1,37 @@
+a b y z
+1 2 3 4 5 6 7 8 9 0 + -
+a
+y z
+a 0 z
+a 1 y
+a 2 y
+a 3 y
+a 4 y
+a 5 y
+a 6 y
+a 7 y
+a 8 y
+a 9 y
+b 1 y
+b 2 y
+b 3 y
+b 4 y
+b 5 y
+b 6 y
+b 7 y
+b 8 y
+b 9 y
+a + b
+a - b
+a * b
+a / b
+y 1 y
+y 2 y
+y 3 y
+y 4 y
+y 5 y
+y 6 y
+y 7 y
+y 8 y
+y 9 y
+y 0 y
